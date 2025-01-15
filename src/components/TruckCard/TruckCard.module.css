@@ -1,0 +1,134 @@
+.container {
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  padding: 24px;
+  width: 888px;
+  height: 368px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 32px;
+}
+
+.infoContainer {
+  margin-left: 24px;
+  width: 524px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #101828;
+}
+
+.titleContainerItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #101828;
+}
+
+.reviewsContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.reviewsContainerItem {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #101828;
+}
+
+.locationContainerItem {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 4px;
+  line-height: 1.5;
+  color: #101828;
+}
+
+.truckDetails {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+  margin-bottom: 24px;
+}
+
+.featuresContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  /* max-width: 524px; */
+  flex-wrap: wrap;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  padding: 12px 18px;
+  background: #f2f4f7;
+  mix-blend-mode: multiply;
+  gap: 8px;
+}
+
+.featuresDetails {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #101828;
+  text-transform: capitalize;
+}
+
+.button {
+  border-radius: 200px;
+  width: 166px;
+  height: 56px;
+  background: #e44848;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+  border-color: transparent;
+}
+
+.image {
+  border-radius: 10px;
+  width: 292px;
+  height: 320px;
+  object-fit: cover;
+}
+
+.icon {
+  border-color: transparent;
+  fill: none;
+  stroke: #101828;
+}
