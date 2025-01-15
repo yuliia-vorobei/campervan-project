@@ -1,0 +1,30 @@
+.headerContainer {
+  border-bottom: 1px solid #f2f4f7;
+  padding: 24px 64px;
+  /* width: 1440px; */
+  height: 72px;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: space-between; /* Distributes space between elements */
+  align-items: center; /* Vertically aligns items */
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.pagesContainer {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+}
+
+.page {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: #101828;
+}
