@@ -12,13 +12,9 @@
 .navContainer {
   display: flex;
   align-items: center;
-  margin: 0 auto;
-}
-
-.pagesContainer {
-  display: flex;
-  gap: 32px;
   justify-content: center;
+  margin: 0 auto;
+  gap: 32px;
 }
 
 .page {

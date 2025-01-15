@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import css from "./Logo.module.css";
 
 const Logo = () => {
-  //   const navigate = useNavigate();
-  //     const handleClick = () => navigate("/home");
+  const navigate = useNavigate();
+  const handleClick = () => navigate("/home");
 
   return (
     <svg
