@@ -1,3 +1,16 @@
 .container {
-  padding: 48px 64px 52px 64px;
+  padding: 48px 64px;
+  display: flex;
+  gap: 64px;
 }
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* .truckContainer {
+  display: flex;
+  flex-direction: column;
+} */

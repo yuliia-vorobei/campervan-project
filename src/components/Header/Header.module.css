@@ -24,3 +24,7 @@
   text-align: center;
   color: #101828;
 }
+
+.active {
+  color: #d84343;
+}

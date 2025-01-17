@@ -1,4 +1,6 @@
 .container {
+  display: flex;
+  gap: 24px;
   border: 1px solid #dadde1;
   border-radius: 20px;
   padding: 24px;
@@ -11,7 +13,6 @@
 }
 
 .infoContainer {
-  margin-left: 24px;
   width: 524px;
 }
 
@@ -42,11 +43,17 @@
   color: #101828;
 }
 
+.gapContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .reviewsContainer {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .reviewsContainerItem {
@@ -75,14 +82,14 @@
   font-size: 16px;
   line-height: 1.5;
   color: #475467;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 .featuresContainer {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   /* max-width: 524px; */
   flex-wrap: wrap;
 }
@@ -95,6 +102,13 @@
   background: #f2f4f7;
   mix-blend-mode: multiply;
   gap: 8px;
+}
+
+.forceNewRow {
+  flex-basis: 20%; /* Forces the element to the next row */
+  display: flex; /* Ensures proper alignment */
+  justify-content: flex-start; /* Align content like the others */
+  align-items: center;
 }
 
 .featuresDetails {
@@ -110,14 +124,6 @@
   border-radius: 200px;
   width: 166px;
   height: 56px;
-  background: #e44848;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: #fff;
-  border-color: transparent;
 }
 
 .image {

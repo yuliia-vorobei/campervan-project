@@ -1,0 +1,16 @@
+.featuresContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  padding: 12px 18px;
+  background: #f2f4f7;
+  mix-blend-mode: multiply;
+  gap: 8px;
+}

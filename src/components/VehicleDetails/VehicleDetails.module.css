@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 527px;
+  gap: 24px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dadde1;
+}
+
+.list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  gap: 289px;
+  justify-content: space-between;
+}

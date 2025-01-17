@@ -1,7 +1,14 @@
+import clsx from "clsx";
+import { useSelector } from "react-redux";
 import Icon from "../Icon/Icon";
 import css from "./TruckCard.module.css";
+import { selectTransportation } from "../../redux/transportation/selectors.js";
+import { useNavigate } from "react-router-dom";
 
-export const TruckCard = ({ items }) => {
+export const TruckCard = () => {
+  const transportation = useSelector(selectTransportation);
+  const navigate = useNavigate();
+
   function splitWordsDescription(text, maxWords) {
     const words = text.split(" ");
     return words.length > maxWords
@@ -17,9 +24,18 @@ export const TruckCard = ({ items }) => {
     return location;
   }
 
+  if (!transportation || !transportation.items) {
+    return;
+  }
+
+  const handleNavigation = (id) => {
+    navigate(`/catalog/${id}`);
+    console.log(id);
+  };
+
   return (
-    <>
-      {items.map(
+    <div>
+      {transportation.items.map(
         ({
           id,
           gallery,
@@ -45,7 +61,7 @@ export const TruckCard = ({ items }) => {
             <img src={gallery[0]?.original} alt="Truck" className={css.image} />
             <div className={css.infoContainer}>
               <div className={css.titleContainer}>
-                <h2 className={css.title}>{name}</h2>
+                <p className={css.title}>{name}</p>
                 <div className={css.titleContainerItem}>
                   <p className={css.price}>€{price}</p>
                   <Icon
@@ -56,111 +72,100 @@ export const TruckCard = ({ items }) => {
                   />
                 </div>
               </div>
-              <div className={css.reviewsContainer}>
-                <div className={css.reviewsContainerItem}>
-                  <Icon id="icon-Star" width={16} height={16} />
-                  <p className={css.item}>
-                    {rating}({reviews.length} Reviews)
-                  </p>
+              <div className={css.gapContainer}>
+                <div className={css.reviewsContainer}>
+                  <div className={css.reviewsContainerItem}>
+                    <Icon id="icon-Star" width={16} height={16} />
+                    <p className={css.item}>
+                      {rating} ({reviews.length} Reviews)
+                    </p>
+                  </div>
+                  <div className={css.locationContainerItem}>
+                    <Icon id="icon-Map" width={16} height={16} />
+                    <p className={css.item}>{swapCountry(location)}</p>
+                  </div>
                 </div>
-                <div className={css.locationContainerItem}>
-                  <Icon id="icon-Map" width={16} height={16} />
-                  <p className={css.item}>{swapCountry(location)}</p>
-                </div>
+                <p className={css.truckDetails}>
+                  {splitWordsDescription(description, 10)}
+                </p>
+
+                <ul className={css.featuresContainer}>
+                  {[
+                    {
+                      condition: transmission,
+                      label: "Transmission",
+                      icon: "icon-diagram",
+                    },
+                    {
+                      condition: engine,
+                      label: "Engine",
+                      icon: "icon-gas-stove",
+                    },
+                    {
+                      condition: kitchen,
+                      label: "Kitchen",
+                      icon: "icon-cup-hot",
+                    },
+                    { condition: AC, label: "AC", icon: "icon-wind" },
+                    {
+                      condition: water,
+                      label: "Water",
+                      icon: "icon-water",
+                    },
+                    {
+                      condition: bathroom,
+                      label: "Bathroom",
+                      icon: "icon-shower",
+                    },
+                    {
+                      condition: gas,
+                      label: "Gas",
+                      icon: "icon-fuel-pump",
+                    },
+                    { condition: TV, label: "Television", icon: "icon-tv" },
+                    {
+                      condition: radio,
+                      label: "Radio",
+                      icon: "icon-radio",
+                    },
+                    {
+                      condition: refrigerator,
+                      label: "Refrigerator",
+                      icon: "icon-fridge",
+                    },
+                    {
+                      condition: microwave,
+                      label: "Microwave",
+                      icon: "icon-microwave",
+                    },
+                  ]
+                    .filter(({ condition }) => condition)
+                    .slice(0, 4)
+                    .map(({ label, icon }, index) => (
+                      <li
+                        key={index}
+                        className={clsx(css.features, {
+                          [css.forceNewRow]: index === 3,
+                        })}
+                      >
+                        <Icon id={icon} width={20} height={20} />
+                        <p className={css.featuresDetails}>{label}</p>
+                      </li>
+                    ))}
+                </ul>
+
+                <button
+                  type="button"
+                  className={css.button}
+                  onClick={() => handleNavigation(id)}
+                >
+                  Show more
+                </button>
               </div>
-              <p className={css.truckDetails}>
-                {splitWordsDescription(description, 10)}
-              </p>
-              <ul className={css.featuresContainer}>
-                {transmission && (
-                  <li className={css.features}>
-                    <Icon id="icon-diagram" width={20} height={20} />
-                    <p className={css.featuresDetails}>{transmission}</p>
-                  </li>
-                )}
-                {engine && (
-                  <li className={css.features}>
-                    <Icon
-                      id="icon-gas-stove"
-                      width={20}
-                      height={20}
-                      className={css.icon}
-                    />
-                    <p className={css.featuresDetails}>{engine}</p>
-                  </li>
-                )}
-                {kitchen && (
-                  <li className={css.features}>
-                    <Icon id="icon-cup-hot" width={20} height={20} />
-                    <p className={css.featuresDetails}>Kitchen</p>
-                  </li>
-                )}
-                {AC && (
-                  <li className={css.features}>
-                    <Icon id="icon-wind" width={20} height={20} />
-                    <p className={css.featuresDetails}>AC</p>
-                  </li>
-                )}
-                {water && (
-                  <li className={css.features}>
-                    <Icon
-                      id="icon-water"
-                      width={20}
-                      height={20}
-                      className={css.icon}
-                    />
-                    <p className={css.featuresDetails}>Water</p>
-                  </li>
-                )}
-                {bathroom && (
-                  <li className={css.features}>
-                    <Icon id="icon-shower" width={20} height={20} />
-                    <p className={css.featuresDetails}>Bathroom</p>
-                  </li>
-                )}
-                {gas && (
-                  <li className={css.features}>
-                    <Icon id="icon-fuel-pump" width={20} height={20} />
-                    <p className={css.featuresDetails}>Gas</p>
-                  </li>
-                )}
-                {TV && (
-                  <li className={css.features}>
-                    <Icon id="icon-tv" width={20} height={20} />
-                    <p className={css.featuresDetails}>Television</p>
-                  </li>
-                )}
-                {radio && (
-                  <li className={css.features}>
-                    <Icon id="icon-radio" width={20} height={20} />
-                    <p className={css.featuresDetails}>Radio</p>
-                  </li>
-                )}
-                {refrigerator && (
-                  <li className={css.features}>
-                    <Icon id="icon-fridge" width={20} height={20} />
-                    <p className={css.featuresDetails}>Refrigerator</p>
-                  </li>
-                )}
-                {microwave && (
-                  <li className={css.features}>
-                    <Icon
-                      id="icon-microwave"
-                      width={20}
-                      height={20}
-                      className={css.icon}
-                    />
-                    <p className={css.featuresDetails}>Microwave</p>
-                  </li>
-                )}
-              </ul>
-              <button type="button" className={css.button}>
-                Show more
-              </button>
             </div>
           </div>
         )
       )}
-    </>
+    </div>
   );
 };

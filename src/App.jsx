@@ -6,7 +6,7 @@ import CatalogPage from "./pages/CatalogPage/CatalogPage";
 import SingleCatalog from "./pages/SingleCatalogPage/SingleCatalogPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Reviews from "./components/Reviews/Reviews";
-import Features from "./components/Feautures/Features";
+import { Features } from "./components/Feautures/Features";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/catalog:id" element={<SingleCatalog />}>
+        <Route path="/catalog/:id" element={<SingleCatalog />}>
           <Route path="feautures" element={<Features />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
