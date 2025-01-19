@@ -10,7 +10,6 @@ export const fetchTrucks = createAsyncThunk(
       const response = await axios.get(
         `/campers?page=${page}&limit=${perPage}`
       );
-      console.log("response.data.items", response.data.items);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

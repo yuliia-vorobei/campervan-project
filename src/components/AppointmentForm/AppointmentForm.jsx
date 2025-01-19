@@ -30,7 +30,6 @@ export const AppointmentForm = () => {
   const commentFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
     actions.resetForm();
   };
 
