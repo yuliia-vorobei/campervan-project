@@ -28,7 +28,12 @@ export const TruckCardDetails = () => {
       <p className={css.title}>{name}</p>
       <div className={css.detailsContainer}>
         <div className={css.reviewsContainerItem}>
-          <Icon id="icon-Star" width={16} height={16} />
+          <Icon
+            id="icon-Star"
+            width={16}
+            height={16}
+            style={{ fill: "#ffc531" }}
+          />
           {rating} ({reviews.length} Reviews)
         </div>
         <div className={css.locationContainerItem}>
@@ -38,8 +43,8 @@ export const TruckCardDetails = () => {
       </div>
       <p className={css.price}>€{price}</p>
       <div className={css.imageContainer}>
-        {gallery.map(({ original, thumb }) => (
-          <img key={thumb} src={original} alt="Truck" className={css.image} />
+        {gallery.map(({ original, thumb }, index) => (
+          <img key={index} src={thumb} alt="Truck" className={css.image} />
         ))}
       </div>
       <p className={css.truckDetails}>{description}</p>

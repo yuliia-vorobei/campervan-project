@@ -75,7 +75,28 @@ export const Features = () => {
         .filter(({ condition }) => condition)
         .map(({ label, icon }, index) => (
           <li key={index} className={css.features}>
-            <Icon id={icon} width={20} height={20} />
+            <Icon
+              id={icon}
+              width={20}
+              height={20}
+              style={{
+                fill: [
+                  "icon-water",
+                  "icon-gas-stove",
+                  "icon-microwave",
+                ].includes(icon)
+                  ? "none"
+                  : undefined,
+                stroke: [
+                  "icon-water",
+                  "icon-gas-stove",
+                  "icon-microwave",
+                ].includes(icon)
+                  ? "currentColor"
+                  : undefined,
+              }}
+            />
+
             <p className={css.featuresDetails}>{label}</p>
           </li>
         ))}

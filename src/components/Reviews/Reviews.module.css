@@ -1,0 +1,56 @@
+.container {
+  width: 631px;
+  display: flex;
+  gap: 44px;
+  flex-direction: column;
+  margin-top: 44px;
+}
+
+.containerList {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.containerItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+}
+
+.backgroundPicture {
+  border-radius: 60px;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  background: #f2f4f7;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #e44848;
+}
+
+.comment {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}
+
+.emptyStar {
+  fill: #f2f4f7;
+}
+
+.filledStar {
+  fill: #ffc531;
+}

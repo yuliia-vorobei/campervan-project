@@ -5,9 +5,12 @@ axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
 
 export const fetchTrucks = createAsyncThunk(
   "transport/fetchAll",
-  async (_, thunkAPI) => {
+  async ({ page, perPage }, thunkAPI) => {
     try {
-      const response = await axios.get("/campers");
+      const response = await axios.get(
+        `/campers?page=${page}&limit=${perPage}`
+      );
+      console.log("response.data.items", response.data.items);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -20,7 +23,6 @@ export const getTruckDetails = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`/campers/${id}`);
-      console.log("getTruckDetails response:", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -4,9 +4,13 @@ import { fetchTrucks, getTruckDetails } from "./operations";
 const transportSlice = createSlice({
   name: "transport",
   initialState: {
-    data: [],
+    items: [],
     isLoading: false,
     error: null,
+    page: 1,
+    perPage: 4,
+    total: 0,
+    camper: null,
   },
   extraReducers: (builder) => {
     builder
@@ -16,8 +20,11 @@ const transportSlice = createSlice({
       .addCase(fetchTrucks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.data = action.payload;
+        console.log("Fetched items:", action.payload.items);
+        state.items = [...state.items, ...action.payload.items];
+        state.total = Math.floor(action.payload.total / state.perPage);
       })
+
       .addCase(fetchTrucks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
@@ -27,19 +34,8 @@ const transportSlice = createSlice({
       })
       .addCase(getTruckDetails.fulfilled, (state, action) => {
         state.isLoading = false;
-        const truck = action.payload;
-        if (!Array.isArray(state.data)) {
-          state.data = [];
-        }
-        const existingTruckIndex = state.data.findIndex(
-          (item) => item.id === truck.id
-        );
-
-        if (existingTruckIndex === -1) {
-          state.data.push(truck);
-        } else {
-          state.data[existingTruckIndex] = truck;
-        }
+        state.camper = action.payload;
+        state.error = null;
       })
 
       .addCase(getTruckDetails.rejected, (state, action) => {

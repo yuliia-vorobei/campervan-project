@@ -1,9 +1,8 @@
-.container {
+.titleContainer {
   display: flex;
   gap: 40px;
-  width: 1312px;
-  padding-bottom: 24px;
   border-bottom: 2px solid #dadde1;
+  padding-bottom: 24px;
 }
 
 .title {
@@ -11,13 +10,10 @@
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
+  cursor: pointer;
 }
 
-.container::after {
-  content: "";
-  display: block;
-  height: 2px;
-  height: 1px;
-  background-color: #dadde1;
-  margin-top: 24px;
+.container {
+  display: flex;
+  gap: 40px;
 }

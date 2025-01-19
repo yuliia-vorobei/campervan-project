@@ -1,12 +1,9 @@
 import clsx from "clsx";
-import { useSelector } from "react-redux";
 import Icon from "../Icon/Icon";
 import css from "./TruckCard.module.css";
-import { selectTransportation } from "../../redux/transportation/selectors.js";
 import { useNavigate } from "react-router-dom";
 
-export const TruckCard = () => {
-  const transportation = useSelector(selectTransportation);
+export const TruckCard = ({ items }) => {
   const navigate = useNavigate();
 
   function splitWordsDescription(text, maxWords) {
@@ -24,10 +21,6 @@ export const TruckCard = () => {
     return location;
   }
 
-  if (!transportation || !transportation.items) {
-    return;
-  }
-
   const handleNavigation = (id) => {
     navigate(`/catalog/${id}`);
     console.log(id);
@@ -35,7 +28,7 @@ export const TruckCard = () => {
 
   return (
     <div>
-      {transportation.items.map(
+      {items.map(
         ({
           id,
           gallery,
@@ -75,7 +68,12 @@ export const TruckCard = () => {
               <div className={css.gapContainer}>
                 <div className={css.reviewsContainer}>
                   <div className={css.reviewsContainerItem}>
-                    <Icon id="icon-Star" width={16} height={16} />
+                    <Icon
+                      id="icon-Star"
+                      width={16}
+                      height={16}
+                      style={{ fill: "#ffc531" }}
+                    />
                     <p className={css.item}>
                       {rating} ({reviews.length} Reviews)
                     </p>
@@ -148,7 +146,27 @@ export const TruckCard = () => {
                           [css.forceNewRow]: index === 3,
                         })}
                       >
-                        <Icon id={icon} width={20} height={20} />
+                        <Icon
+                          id={icon}
+                          width={20}
+                          height={20}
+                          style={{
+                            fill: [
+                              "icon-water",
+                              "icon-gas-stove",
+                              "icon-microwave",
+                            ].includes(icon)
+                              ? "none"
+                              : undefined,
+                            stroke: [
+                              "icon-water",
+                              "icon-gas-stove",
+                              "icon-microwave",
+                            ].includes(icon)
+                              ? "currentColor"
+                              : undefined,
+                          }}
+                        />
                         <p className={css.featuresDetails}>{label}</p>
                       </li>
                     ))}

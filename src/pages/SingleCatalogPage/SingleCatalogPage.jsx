@@ -11,8 +11,6 @@ import css from "./SingleCatalogPage.module.css"; // Specific styles for the sin
 import { TruckCardDetails } from "../../components/TruckCardDetails/TruckCardDetails";
 import { Loader } from "../../components/Loader/Loader";
 import { DetailsPageHeader } from "../../components/DetailsPageHeader/DetailsPageHeader";
-import { FeauturesPage } from "../../components/FeauturesPage/FeauturesPage";
-import { AppointmentForm } from "../../components/AppointmentForm/AppointmentForm";
 
 const SingleCatalog = () => {
   const { id } = useParams();
@@ -38,10 +36,6 @@ const SingleCatalog = () => {
       )}
       <TruckCardDetails />
       <DetailsPageHeader />
-      <div className={css.feauturesContainer}>
-        <FeauturesPage />
-        <AppointmentForm />
-      </div>
     </div>
   );
 };
