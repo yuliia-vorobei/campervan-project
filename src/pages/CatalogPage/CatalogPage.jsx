@@ -4,23 +4,24 @@ import css from "./CatalogPage.module.css";
 import { Loader } from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrucks } from "../../redux/transportation/operations.js";
-import { VehicleType } from "../../components/VehicleType/VehicleType.jsx";
+import { VehicleFilters } from "../../components/VehicleFilters/VehicleFilters.jsx";
 
 const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const { isLoading, error, perPage, items } = useSelector(
+  const { total, isLoading, error, perPage, items } = useSelector(
     (state) => state.transport
   );
+  const filter = useSelector((state) => state.filters.data);
+
+  const totalPages = Math.ceil(total / perPage);
 
   useEffect(() => {
-    dispatch(fetchTrucks({ page, perPage }));
-  }, [dispatch, page, perPage]);
+    dispatch(fetchTrucks({ page, perPage, filter }));
+  }, [dispatch, page, perPage, filter]);
 
   const handleLoadMore = () => {
-    if (items.length > 0) {
-      setPage((prevPage) => prevPage + 1);
-    }
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
@@ -30,13 +31,12 @@ const CatalogPage = () => {
         <p>Whoops, something went wrong! Please try reloading this page!</p>
       )}
       <div className={css.filterContainer}>
-        <VehicleType />
-        <button type="button">Search</button>
+        <VehicleFilters />
       </div>
       <div className={css.truckContainer}>
         <TruckCard items={items} />
 
-        {items.length > 0 && (
+        {totalPages > page && (
           <button onClick={handleLoadMore} className={css.button}>
             Load more
           </button>

@@ -23,7 +23,6 @@ export const TruckCard = ({ items }) => {
 
   const handleNavigation = (id) => {
     navigate(`/catalog/${id}`);
-    console.log(id);
   };
 
   return (
@@ -79,7 +78,7 @@ export const TruckCard = ({ items }) => {
                     </p>
                   </div>
                   <div className={css.locationContainerItem}>
-                    <Icon id="icon-Map" width={16} height={16} />
+                    <Icon id="icon-map" width={16} height={16} />
                     <p className={css.item}>{swapCountry(location)}</p>
                   </div>
                 </div>

@@ -9,12 +9,12 @@ import {
   REGISTER,
 } from "redux-persist";
 import transportSlice from "./transportation/transportSlice.js";
-
+import filtersSlice from "./filters/filtersSlice.js";
 export const store = configureStore({
   reducer: {
     transport: transportSlice,
     // selection:,
-    // filter:
+    filters: filtersSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

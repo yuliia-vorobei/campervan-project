@@ -37,14 +37,14 @@ export const TruckCardDetails = () => {
           {rating} ({reviews.length} Reviews)
         </div>
         <div className={css.locationContainerItem}>
-          <Icon id="icon-Map" width={16} height={16} />
+          <Icon id="icon-map" width={16} height={16} />
           <p className={css.item}>{swapCountry(location)}</p>
         </div>
       </div>
       <p className={css.price}>€{price}</p>
       <div className={css.imageContainer}>
-        {gallery.map(({ original, thumb }, index) => (
-          <img key={index} src={thumb} alt="Truck" className={css.image} />
+        {gallery.map(({ original, thumb }) => (
+          <img key={thumb} src={original} alt="Truck" className={css.image} />
         ))}
       </div>
       <p className={css.truckDetails}>{description}</p>

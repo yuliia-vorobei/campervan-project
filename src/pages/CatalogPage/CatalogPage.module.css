@@ -10,6 +10,13 @@
   gap: 40px;
 }
 
+.filtersTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}
+
 .truckContainer {
   display: flex;
   flex-direction: column;

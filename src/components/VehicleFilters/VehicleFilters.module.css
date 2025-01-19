@@ -1,10 +1,18 @@
 .container {
   display: flex;
+  gap: 32px;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
   width: 360px;
-  height: 168px;
+}
+
+.locationTitle {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #6c717b;
 }
 
 .title {
@@ -12,15 +20,35 @@
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
-  margin-bottom: 48px;
   position: relative;
+}
+
+.input {
+  border-radius: 12px;
+  padding: 18px 218px 18px 46px;
+
+  width: 100%;
+  height: 56px;
+  background: #f7f7f7;
+  border-color: transparent;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 18px;
+  pointer-events: none;
 }
 
 .title::after {
   content: "";
   display: block;
   width: 360px;
-  height: 2px;
   height: 1px;
   background-color: #dadde1;
   margin-top: 24px;
@@ -28,7 +56,11 @@
 
 .iconsList {
   display: flex;
-  gap: 12px;
+  margin-top: 24px;
+  gap: 8px 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .iconsItem {
@@ -42,10 +74,19 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 .iconsItem:nth-child(2) {
   padding: 4px 16px;
+}
+
+.iconsItem.selected {
+  border: 1px solid #d84343;
+}
+
+.iconsItem:hover {
+  border: 1px solid #d84343;
 }
 
 .iconTitle {

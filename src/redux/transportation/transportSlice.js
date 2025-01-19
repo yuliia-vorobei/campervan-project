@@ -12,24 +12,34 @@ const transportSlice = createSlice({
     total: 0,
     camper: null,
   },
+  reducers: {
+    // clearItems(state) {
+    //   state.items = [];
+    //   state.total = 0;
+    //   state.page = 1;
+    // },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTrucks.pending, (state, action) => {
+      .addCase(fetchTrucks.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(fetchTrucks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        console.log("Fetched items:", action.payload.items);
-        state.items = [...state.items, ...action.payload.items];
-        state.total = Math.floor(action.payload.total / state.perPage);
+        if (action.meta.arg.page === 1) {
+          state.items = action.payload.items;
+        } else {
+          state.items = [...state.items, ...action.payload.items];
+        }
+        state.total = action.payload.total;
       })
 
       .addCase(fetchTrucks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(getTruckDetails.pending, (state, action) => {
+      .addCase(getTruckDetails.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getTruckDetails.fulfilled, (state, action) => {
@@ -46,3 +56,4 @@ const transportSlice = createSlice({
 });
 
 export default transportSlice.reducer;
+// export const { clearItems } = transportSlice.actions;
