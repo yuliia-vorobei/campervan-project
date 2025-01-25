@@ -60,7 +60,7 @@ export const VehicleFilters = () => {
                 <p className={css.iconTitle}>AC</p>
               </div>
 
-              {/* <div
+              <div
                 className={`${css.iconsItem} ${
                   values.equipment.includes("Automatic") ? css.selected : ""
                 }`}
@@ -73,7 +73,7 @@ export const VehicleFilters = () => {
               >
                 <Icon id="icon-diagram" width={32} height={32} />
                 <p className={css.iconTitle}>Automatic</p>
-              </div> */}
+              </div>
 
               <div
                 className={`${css.iconsItem} ${
@@ -133,7 +133,7 @@ export const VehicleFilters = () => {
                   <p className={css.iconTitle}>Van</p>
                 </div>
                 <div
-                  className={`${css.iconsItem} ${
+                  className={`${css.iconsItemIntegrated} ${
                     values.type === "fullyIntegrated" ? css.selected : ""
                   }`}
                   onClick={() => setFieldValue("type", "fullyIntegrated")}

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   margin-top: 44px;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   border: 1px solid #dadde1;
   border-radius: 10px;

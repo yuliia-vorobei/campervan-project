@@ -13,6 +13,11 @@ export const TruckCard = ({ items }) => {
       : text;
   }
 
+  function setPrice(price) {
+    const priceNumber = price.toString();
+    return `${priceNumber}.${"00"}`;
+  }
+
   function swapCountry(location) {
     const parts = location.split(",");
     if (parts.length === 2) {
@@ -55,7 +60,7 @@ export const TruckCard = ({ items }) => {
               <div className={css.titleContainer}>
                 <p className={css.title}>{name}</p>
                 <div className={css.titleContainerItem}>
-                  <p className={css.price}>€{price}</p>
+                  <p className={css.price}>€{setPrice(price)}</p>
                   <Icon
                     id="icon-Heart"
                     width={24}
