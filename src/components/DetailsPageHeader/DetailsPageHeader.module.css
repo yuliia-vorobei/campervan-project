@@ -5,7 +5,16 @@
   padding-bottom: 24px;
 }
 
+/* .title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  cursor: pointer;
+} */
+
 .title {
+  position: relative;
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
@@ -16,4 +25,14 @@
 .container {
   display: flex;
   gap: 40px;
+}
+
+.title.active::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -24px;
+  height: 4px;
+  background-color: #e44848;
+  width: 100%;
 }

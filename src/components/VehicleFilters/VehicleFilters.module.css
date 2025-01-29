@@ -85,7 +85,6 @@
   mix-blend-mode: multiply;
   border-radius: 10px;
   padding: 4px 16px;
-
   width: 112px;
   height: 96px;
   display: flex;
@@ -95,11 +94,16 @@
   cursor: pointer;
 }
 
+.iconsItemIntegrated.selected {
+  border: 1px solid #d84343;
+}
+
 .iconsItem.selected {
   border: 1px solid #d84343;
 }
 
-.iconsItem:hover {
+.iconsItem:hover,
+.iconsItemIntegrated:hover {
   border: 1px solid #d84343;
 }
 

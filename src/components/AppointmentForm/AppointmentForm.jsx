@@ -1,9 +1,25 @@
-import { useId } from "react";
-import css from "./AppointmentForm.module.css";
-import { Field, Form, Formik } from "formik";
+import { useEffect, useId, useRef, useState } from "react";
+import Modal from "react-modal";
+import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import css from "./AppointmentForm.module.css";
+import { CalendarModal } from "../CalendarModal/CalendarModal";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export const AppointmentForm = () => {
+  // const [modalIsOpen, setIsOpen] = useState(false);
+
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
+
+  // function closeModal() {
+  //   setIsOpen(false);
+  // }
+
+  // Modal.setAppElement("#root");
+
   const FeedbackSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "Too Short!")
@@ -30,11 +46,35 @@ export const AppointmentForm = () => {
   const commentFieldId = useId();
 
   const handleSubmit = (values, actions) => {
+    console.log(values);
     actions.resetForm();
+    toast("Your form was successfully sent!");
   };
+
+  // useEffect(() => {
+  //   if (modalIsOpen) {
+  //     document.body.style.overflow = "hidden"; // Disable scrolling
+  //   } else {
+  //     document.body.style.overflow = ""; // Re-enable scrolling
+  //   }
+
+  //   return () => {
+  //     document.body.style.overflow = ""; // Cleanup when component unmounts
+  //   };
+  // }, [modalIsOpen]);
 
   return (
     <div className={css.container}>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 6000,
+          style: {
+            background: "#F2F4F7",
+            color: "#E44848",
+          },
+        }}
+      />
       <h3 className={css.title}>Book your campervan now</h3>
       <p className={css.description}>
         Stay connected! We are always ready to help you.
@@ -52,6 +92,7 @@ export const AppointmentForm = () => {
             id={nameFieldId}
             placeholder="Name*"
           />
+          <ErrorMessage name="name" component="div" className={css.error} />
           <Field
             className={css.field}
             type="email"
@@ -59,13 +100,25 @@ export const AppointmentForm = () => {
             id={emailFieldId}
             placeholder="Email*"
           />
+          <ErrorMessage name="email" component="div" className={css.error} />
+
           <Field
             className={css.field}
-            type="text"
+            type="date"
             name="booking"
             id={bookingFieldId}
             placeholder="Booking date*"
+            // onClick={openModal}
           />
+          {/* <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            className={css.Modal}
+            overlayClassName={css.Overlay}
+            contentLabel="Calendar"
+          >
+            {modalIsOpen && <CalendarModal closeModal={closeModal} />}
+          </Modal> */}
           <Field
             as="textarea"
             name="comment"
