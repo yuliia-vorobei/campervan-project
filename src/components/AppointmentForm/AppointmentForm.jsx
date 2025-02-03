@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import Modal from "react-modal";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -48,7 +48,7 @@ export const AppointmentForm = () => {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
-    toast("Your form was successfully sent!");
+    toast.success("Your form was successfully sent!");
   };
 
   // useEffect(() => {
@@ -71,7 +71,7 @@ export const AppointmentForm = () => {
           duration: 6000,
           style: {
             background: "#F2F4F7",
-            color: "#E44848",
+            color: "#101828",
           },
         }}
       />

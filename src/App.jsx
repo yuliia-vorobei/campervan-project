@@ -1,10 +1,14 @@
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 import "./App.css";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
-import HomePage from "./pages/HomePage/HomePage";
-import CatalogPage from "./pages/CatalogPage/CatalogPage";
-import SingleCatalog from "./pages/SingleCatalogPage/SingleCatalogPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage"));
+const SingleCatalog = lazy(() =>
+  import("./pages/SingleCatalogPage/SingleCatalogPage")
+);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
   return (
