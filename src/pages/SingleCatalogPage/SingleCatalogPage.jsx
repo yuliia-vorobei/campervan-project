@@ -7,7 +7,7 @@ import {
   isLoading,
   selectOneTruck,
 } from "../../redux/transportation/selectors";
-import css from "./SingleCatalogPage.module.css"; // Specific styles for the single catalog page
+import css from "./SingleCatalogPage.module.css";
 import { TruckCardDetails } from "../../components/TruckCardDetails/TruckCardDetails";
 import { Loader } from "../../components/Loader/Loader";
 import { DetailsPageHeader } from "../../components/DetailsPageHeader/DetailsPageHeader";

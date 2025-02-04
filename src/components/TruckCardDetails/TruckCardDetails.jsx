@@ -16,6 +16,11 @@ export const TruckCardDetails = () => {
     return location;
   }
 
+  function setPrice(price) {
+    const priceNumber = price.toString();
+    return `${priceNumber}.${"00"}`;
+  }
+
   if (!transportation) {
     return;
   }
@@ -41,7 +46,7 @@ export const TruckCardDetails = () => {
           <p className={css.item}>{swapCountry(location)}</p>
         </div>
       </div>
-      <p className={css.price}>€{price}</p>
+      <p className={css.price}>€{setPrice(price)}</p>
       <div className={css.imageContainer}>
         {gallery.map(({ original, thumb }) => (
           <img key={thumb} src={original} alt="Truck" className={css.image} />

@@ -10,10 +10,11 @@ import {
 } from "redux-persist";
 import transportSlice from "./transportation/transportSlice.js";
 import filtersSlice from "./filters/filtersSlice.js";
+import favoriteSlice from "./favorite/favoriteSlice.js";
 export const store = configureStore({
   reducer: {
     transport: transportSlice,
-    // selection:,
+    favorite: favoriteSlice,
     filters: filtersSlice,
   },
   middleware: (getDefaultMiddleware) =>

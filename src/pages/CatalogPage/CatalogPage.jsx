@@ -5,6 +5,7 @@ import { Loader } from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrucks } from "../../redux/transportation/operations.js";
 import { VehicleFilters } from "../../components/VehicleFilters/VehicleFilters.jsx";
+import { setLoadMoreEnabled } from "../../redux/transportation/transportSlice.js";
 
 const CatalogPage = () => {
   const [page, setPage] = useState(1);
@@ -13,15 +14,17 @@ const CatalogPage = () => {
     (state) => state.transport
   );
   const filter = useSelector((state) => state.filters.data);
-
   const totalPages = Math.ceil(total / perPage);
 
   useEffect(() => {
+    dispatch(setLoadMoreEnabled(true));
     dispatch(fetchTrucks({ page, perPage, filter }));
   }, [dispatch, page, perPage, filter]);
 
   const handleLoadMore = () => {
+    dispatch(setLoadMoreEnabled(false));
     setPage((prevPage) => prevPage + 1);
+    dispatch(setLoadMoreEnabled(true));
   };
 
   return (

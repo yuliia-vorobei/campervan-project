@@ -89,8 +89,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  /* margin-bottom: 24px; */
-  /* max-width: 524px; */
+
   flex-wrap: wrap;
 }
 
@@ -105,9 +104,9 @@
 }
 
 .forceNewRow {
-  flex-basis: 20%; /* Forces the element to the next row */
-  display: flex; /* Ensures proper alignment */
-  justify-content: flex-start; /* Align content like the others */
+  flex-basis: 20%;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -133,8 +132,33 @@
   object-fit: cover;
 }
 
+.iconButton {
+  display: block;
+  background-color: transparent;
+  fill: none;
+  border: transparent;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+
+.iconButton:hover,
+.iconButton:focus {
+  background: none;
+}
 .icon {
+  stroke: #101828;
+  cursor: pointer;
+}
+
+.iconSelected {
   border-color: transparent;
   fill: none;
-  stroke: #101828;
+  stroke: #e44848;
+  cursor: pointer;
+}
+
+.icon:hover,
+.icon:focus {
+  stroke: #e44848;
 }

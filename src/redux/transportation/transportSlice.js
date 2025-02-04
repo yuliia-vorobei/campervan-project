@@ -11,8 +11,12 @@ const transportSlice = createSlice({
     perPage: 4,
     total: 0,
     camper: null,
+    loadMoreEnabled: true,
   },
   reducers: {
+    setLoadMoreEnabled(state, action) {
+      state.loadMoreEnabled = action.payload;
+    },
     // clearItems(state) {
     //   state.items = [];
     //   state.total = 0;
@@ -22,9 +26,15 @@ const transportSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTrucks.pending, (state) => {
+        if (!state.loadMoreEnabled) {
+          return;
+        }
         state.isLoading = true;
       })
       .addCase(fetchTrucks.fulfilled, (state, action) => {
+        if (!state.loadMoreEnabled) {
+          return;
+        }
         state.isLoading = false;
         state.error = null;
         if (action.meta.arg.page === 1) {
@@ -36,6 +46,9 @@ const transportSlice = createSlice({
       })
 
       .addCase(fetchTrucks.rejected, (state, action) => {
+        if (!state.loadMoreEnabled) {
+          return;
+        }
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -55,5 +68,6 @@ const transportSlice = createSlice({
   },
 });
 
+export const { setLoadMoreEnabled } = transportSlice.actions;
 export default transportSlice.reducer;
 // export const { clearItems } = transportSlice.actions;
