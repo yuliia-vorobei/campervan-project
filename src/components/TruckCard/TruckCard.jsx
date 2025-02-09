@@ -14,10 +14,18 @@ export const TruckCard = ({ items }) => {
 
   const favorites = useSelector(favoriteTrucks);
 
+  const favoriteSet = new Set(favorites);
+
   useEffect(() => {
-    if (favorites.length > 0) {
-      localStorage.setItem("favoriteTruck", JSON.stringify(favorites));
+    const savedItem = localStorage.getItem("favoriteTruck");
+    if (savedItem) {
+      const parsedItems = JSON.parse(savedItem);
+      parsedItems.forEach((id) => dispatch(addFavorites(id)));
     }
+  }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("favoriteTruck", JSON.stringify(favorites));
   }, [favorites]);
 
   function addFavorite(id) {
@@ -73,7 +81,9 @@ export const TruckCard = ({ items }) => {
           engine,
           gas,
         }) => {
-          const isFavorite = favorites.includes(id);
+          // const isFavorite = favorites.includes(id);
+          const isFavorite = favoriteSet.has(id);
+
           return (
             <div key={id} className={css.container}>
               <img
@@ -214,6 +224,7 @@ export const TruckCard = ({ items }) => {
                   >
                     Show more
                   </button>
+                  {/* {loading && <Loader />} */}
                 </div>
               </div>
             </div>
