@@ -1,9 +1,9 @@
-import { useEffect, useId, useState } from "react";
-import Modal from "react-modal";
+import { useId } from "react";
+// import Modal from "react-modal";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./AppointmentForm.module.css";
-import { CalendarModal } from "../CalendarModal/CalendarModal";
+// import { CalendarModal } from "../CalendarModal/CalendarModal";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
@@ -46,7 +46,6 @@ export const AppointmentForm = () => {
   const commentFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
     actions.resetForm();
     toast.success("Your form was successfully sent!");
   };
