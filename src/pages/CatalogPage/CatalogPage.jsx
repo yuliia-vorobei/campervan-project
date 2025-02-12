@@ -5,20 +5,35 @@ import { Loader } from "../../components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrucks } from "../../redux/transportation/operations.js";
 import { VehicleFilters } from "../../components/VehicleFilters/VehicleFilters.jsx";
-import { setLoadMoreEnabled } from "../../redux/transportation/transportSlice.js";
+import {
+  clearItems,
+  setLoadMoreEnabled,
+} from "../../redux/transportation/transportSlice.js";
+import { selectFilter } from "../../redux/transportation/selectors.js";
 
 const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const { total, isLoading, error, perPage, items } = useSelector(
+  const { total, isLoading, perPage, error, items } = useSelector(
     (state) => state.transport
   );
-  const filter = useSelector((state) => state.filters.data);
+  const filter = useSelector(selectFilter);
+
   const totalPages = Math.ceil(total / perPage);
 
   useEffect(() => {
     dispatch(setLoadMoreEnabled(true));
-    dispatch(fetchTrucks({ page, perPage, filter }));
+    if (filter) {
+      dispatch(clearItems([]));
+    }
+    const query = Object.fromEntries(
+      Object.entries(filter).filter(
+        ([, values]) => (values !== false) & (values !== "")
+      )
+    );
+    const queryString = new URLSearchParams(query).toString();
+
+    dispatch(fetchTrucks({ page, perPage, filter: queryString }));
   }, [dispatch, page, perPage, filter]);
 
   const handleLoadMore = () => {
@@ -30,14 +45,15 @@ const CatalogPage = () => {
   return (
     <section className={css.container}>
       {isLoading && <Loader />}
-      {error && (
-        <p>Whoops, something went wrong! Please try reloading this page!</p>
-      )}
       <div className={css.filterContainer}>
         <VehicleFilters />
       </div>
       <div className={css.truckContainer}>
-        <TruckCard items={items} />
+        {items.length > 0 ? (
+          <TruckCard items={items} />
+        ) : (
+          <p>Whoops, nothing was found</p>
+        )}
 
         {totalPages > page && (
           <button onClick={handleLoadMore} className={css.button}>

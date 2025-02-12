@@ -5,3 +5,4 @@ export const selectOneTruck = (state, id) =>
   Array.isArray(state.transport.items)
     ? state.transport.items.find((item) => item.id === id)
     : undefined;
+export const selectFilter = (state) => state.filters.data;

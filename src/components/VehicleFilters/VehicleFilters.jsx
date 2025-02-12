@@ -1,28 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Icon from "../Icon/Icon";
 import css from "./VehicleFilters.module.css";
 import { Formik, Form, Field } from "formik";
 import { changeFilter } from "../../redux/filters/filtersSlice";
-import { fetchTrucks } from "../../redux/transportation/operations";
 
 export const VehicleFilters = () => {
   const dispatch = useDispatch();
   const initialValues = {
-    equipment: [],
-    type: "",
     location: "",
+    AC: false,
+    kitchen: false,
+    TV: false,
+    bathroom: false,
+    refrigerator: false,
+    microwave: false,
+    gas: false,
+    water: false,
+    transmission: "",
+    engine: "",
+    form: "",
   };
 
-  const currentFilter = useSelector((state) => state.filters.data);
-
-  const handleFilterChange = (values) => {
-    const newFilter = { ...currentFilter, ...values };
-    dispatch(changeFilter(newFilter));
-    dispatch(fetchTrucks({ page: 1, perPage: 4, filter: newFilter }));
+  const handleSubmit = (values) => {
+    dispatch(changeFilter(values));
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleFilterChange}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, setFieldValue }) => (
         <Form>
           <div className={css.container}>
@@ -45,115 +49,122 @@ export const VehicleFilters = () => {
             </div>
             <h2 className={css.title}> Vehicle equipment</h2>
             <div className={css.iconsList}>
-              <div
-                className={`${css.iconsItem} ${
-                  values.equipment.includes("AC") ? css.selected : ""
-                }`}
-                onClick={() => {
-                  const newEquipment = values.equipment.includes("AC")
-                    ? values.equipment.filter((item) => item !== "AC")
-                    : [...values.equipment, "AC"];
-                  setFieldValue("equipment", newEquipment);
-                }}
-              >
+              <label className={values.AC ? css.active : undefined}>
+                <Field type="checkbox" name="AC" />
                 <Icon id="icon-wind" width={32} height={32} />
-                <p className={css.iconTitle}>AC</p>
-              </div>
+                AC
+              </label>
 
-              <div
-                className={`${css.iconsItem} ${
-                  values.equipment.includes("Automatic") ? css.selected : ""
-                }`}
-                onClick={() => {
-                  const newEquipment = values.equipment.includes("Automatic")
-                    ? values.equipment.filter((item) => item !== "Automatic")
-                    : [...values.equipment, "Automatic"];
-                  setFieldValue("equipment", newEquipment);
-                }}
-              >
-                <Icon id="icon-diagram" width={32} height={32} />
-                <p className={css.iconTitle}>Automatic</p>
-              </div>
-
-              <div
-                className={`${css.iconsItem} ${
-                  values.equipment.includes("kitchen") ? css.selected : ""
-                }`}
-                onClick={() => {
-                  const newEquipment = values.equipment.includes("kitchen")
-                    ? values.equipment.filter((item) => item !== "kitchen")
-                    : [...values.equipment, "kitchen"];
-                  setFieldValue("equipment", newEquipment);
-                }}
-              >
+              <label className={values.kitchen ? css.active : undefined}>
+                <Field type="checkbox" name="kitchen" />
                 <Icon id="icon-cup-hot" width={32} height={32} />
-                <p className={css.iconTitle}>Kitchen</p>
-              </div>
-
-              <div
-                className={`${css.iconsItem} ${
-                  values.equipment.includes("TV") ? css.selected : ""
-                }`}
-                onClick={() => {
-                  const newEquipment = values.equipment.includes("TV")
-                    ? values.equipment.filter((item) => item !== "TV")
-                    : [...values.equipment, "TV"];
-                  setFieldValue("equipment", newEquipment);
-                }}
-              >
+                Kitchen
+              </label>
+              <label className={values.TV ? css.active : undefined}>
+                <Field type="checkbox" name="TV" />
                 <Icon id="icon-tv" width={32} height={32} />
-                <p className={css.iconTitle}>TV</p>
-              </div>
-
-              <div
-                className={`${css.iconsItem} ${
-                  values.equipment.includes("water") ? css.selected : ""
-                }`}
-                onClick={() => {
-                  const newEquipment = values.equipment.includes("water")
-                    ? values.equipment.filter((item) => item !== "water")
-                    : [...values.equipment, "water"];
-                  setFieldValue("equipment", newEquipment);
-                }}
-              >
+                TV
+              </label>
+              <label className={values.bathroom ? css.active : undefined}>
+                <Field type="checkbox" name="bathroom" />
                 <Icon id="icon-shower" width={32} height={32} />
-                <p className={css.iconTitle}>Bathroom</p>
-              </div>
+                Bathroom
+              </label>
+
+              <label className={values.refrigerator ? css.active : undefined}>
+                <Field type="checkbox" name="refrigerator" />
+                <Icon id="icon-fridge" width={32} height={32} />
+                Refrigerator
+              </label>
+              <label className={values.microwave ? css.active : undefined}>
+                <Field type="checkbox" name="microwave" />
+                <Icon
+                  id="icon-microwave"
+                  width={32}
+                  height={32}
+                  fill="none"
+                  stroke="black"
+                />
+                Microwave
+              </label>
+
+              <label className={values.water ? css.active : undefined}>
+                <Field type="checkbox" name="water" />
+                <Icon
+                  id="icon-water"
+                  width={32}
+                  height={32}
+                  fill="none"
+                  stroke="black"
+                />
+                Water
+              </label>
             </div>
-            <div className={css.secondContainer}>
-              <h2 className={css.title}>Vehicle type</h2>
-              <div className={css.iconsList}>
-                <div
-                  className={`${css.iconsItem} ${
-                    values.type === "van" ? css.selected : ""
-                  }`}
-                  onClick={() => setFieldValue("type", "van")}
-                >
-                  <Icon id="icon-bi_grid-1x2" width={32} height={32} />
-                  <p className={css.iconTitle}>Van</p>
-                </div>
-                <div
-                  className={`${css.iconsItemIntegrated} ${
-                    values.type === "fullyIntegrated" ? css.selected : ""
-                  }`}
-                  onClick={() => setFieldValue("type", "fullyIntegrated")}
-                >
-                  <Icon id="icon-bi_grid" width={32} height={32} />
-                  <p className={css.iconTitle}>Fully Integrated</p>
-                </div>
-                <div
-                  className={`${css.iconsItem} ${
-                    values.type === "alcove" ? css.selected : ""
-                  }`}
-                  onClick={() => setFieldValue("type", "alcove")}
-                >
-                  <Icon id="icon-bi_grid-3x3-gap" width={32} height={32} />
-                  <p className={css.iconTitle}>Alcove</p>
-                </div>
-              </div>
-            </div>
-            <button type="submit">Search</button>
           </div>
+          <div className={css.container}>
+            <h2 className={css.title}>Vehicle type</h2>
+            <div className={css.iconsList}>
+              <label
+                className={
+                  values.form === "panelTruck" ? css.active : undefined
+                }
+              >
+                <Field
+                  type="radio"
+                  name="form"
+                  value="panelTruck"
+                  onClick={() => {
+                    if (values.form === "panelTruck") {
+                      setFieldValue("form", "");
+                    } else {
+                      setFieldValue("form", "panelTruck");
+                    }
+                  }}
+                />
+                <Icon id="icon-bi_grid-1x2" width={32} height={32} />
+                Van
+              </label>
+              <label
+                className={
+                  values.form === "fullyIntegrated" ? css.active : undefined
+                }
+              >
+                <Field
+                  type="radio"
+                  name="form"
+                  value="fullyIntegrated"
+                  onClick={() => {
+                    if (values.form === "fullyIntegrated") {
+                      setFieldValue("form", "");
+                    } else {
+                      setFieldValue("form", "fullyIntegrated");
+                    }
+                  }}
+                />
+                <Icon id="icon-bi_grid" width={32} height={32} />
+                Fully Integrated
+              </label>
+              <label
+                className={values.form === "alcove" ? css.active : undefined}
+              >
+                <Field
+                  type="radio"
+                  name="form"
+                  value="alcove"
+                  onClick={() => {
+                    if (values.form === "alcove") {
+                      setFieldValue("form", "");
+                    } else {
+                      setFieldValue("form", "alcove");
+                    }
+                  }}
+                />
+                <Icon id="icon_alcove" width={32} height={32} />
+                Alcove
+              </label>
+            </div>
+          </div>
+          <button type="submit">Search</button>
         </Form>
       )}
     </Formik>

@@ -1,7 +1,15 @@
 // import css from "./Icons.module.css";
 import icons from "../../images/icons.svg";
 
-const Icon = ({ id, width, height, className = "", style }) => {
+const Icon = ({
+  id,
+  width,
+  height,
+  className = "",
+  style,
+  fill = "currentColor",
+  stroke = "none",
+}) => {
   return (
     <svg
       className={`${className}`}
@@ -9,6 +17,8 @@ const Icon = ({ id, width, height, className = "", style }) => {
       height={height}
       aria-hidden="true"
       style={style}
+      fill={fill}
+      stroke={stroke}
     >
       <use href={`${icons}#${id}`}></use>
     </svg>

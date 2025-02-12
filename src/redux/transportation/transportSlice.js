@@ -17,11 +17,11 @@ const transportSlice = createSlice({
     setLoadMoreEnabled(state, action) {
       state.loadMoreEnabled = action.payload;
     },
-    // clearItems(state) {
-    //   state.items = [];
-    //   state.total = 0;
-    //   state.page = 1;
-    // },
+    clearItems(state) {
+      state.items = [];
+      state.total = 0;
+      state.page = 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,4 +70,4 @@ const transportSlice = createSlice({
 
 export const { setLoadMoreEnabled } = transportSlice.actions;
 export default transportSlice.reducer;
-// export const { clearItems } = transportSlice.actions;
+export const { clearItems } = transportSlice.actions;
