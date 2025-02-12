@@ -40,7 +40,8 @@
 
 .inputIcon {
   position: absolute;
-  left: 18px;
+  left: 80px;
+  top: 170px;
   pointer-events: none;
 }
 
@@ -59,6 +60,7 @@
   gap: 8px 12px;
   margin-bottom: 32px;
 }
+
 label {
   border: 1px solid #dadde1;
   border-radius: 12px;
@@ -71,7 +73,7 @@ label {
   justify-content: center;
   cursor: pointer;
 }
-input[type="checkbox"] {
+label input[type="checkbox"] {
   display: none;
 }
 

@@ -32,7 +32,7 @@ export const VehicleFilters = () => {
           <div className={css.container}>
             <div>
               <p className={css.locationTitle}>Location</p>
-              <div className={css.inputWrapper}>
+              <div className={values.location ? css.inputWrapper : undefined}>
                 <Field
                   type="text"
                   name="location"

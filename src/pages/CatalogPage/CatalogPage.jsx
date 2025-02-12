@@ -14,7 +14,7 @@ import { selectFilter } from "../../redux/transportation/selectors.js";
 const CatalogPage = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const { total, isLoading, perPage, error, items } = useSelector(
+  const { total, isLoading, perPage, items } = useSelector(
     (state) => state.transport
   );
   const filter = useSelector(selectFilter);
