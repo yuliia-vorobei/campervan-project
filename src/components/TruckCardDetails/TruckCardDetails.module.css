@@ -78,4 +78,5 @@
   width: 292px;
   height: 312px;
   object-fit: cover;
+  overflow: hidden;
 }

@@ -23,9 +23,9 @@ const CatalogPage = () => {
 
   useEffect(() => {
     dispatch(setLoadMoreEnabled(true));
-    if (page === 1 && filter) {
-      dispatch(clearItems([]));
-    }
+    // if (filter) {
+    //   dispatch(clearItems([]));
+    // }
     const query = Object.fromEntries(
       Object.entries(filter).filter(
         ([, values]) => (values !== false) & (values !== "")
@@ -35,6 +35,11 @@ const CatalogPage = () => {
 
     dispatch(fetchTrucks({ page, perPage, filter: queryString }));
   }, [dispatch, page, perPage, filter]);
+
+  useEffect(() => {
+    setPage(1);
+    dispatch(clearItems());
+  }, [filter]);
 
   const handleLoadMore = () => {
     dispatch(setLoadMoreEnabled(false));
