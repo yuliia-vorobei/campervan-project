@@ -23,7 +23,7 @@ const CatalogPage = () => {
 
   useEffect(() => {
     dispatch(setLoadMoreEnabled(true));
-    if (filter) {
+    if (page === 1 && filter) {
       dispatch(clearItems([]));
     }
     const query = Object.fromEntries(

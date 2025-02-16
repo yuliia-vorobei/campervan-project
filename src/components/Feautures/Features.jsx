@@ -3,10 +3,16 @@ import { useParams } from "react-router-dom";
 import { selectOneTruck } from "../../redux/transportation/selectors";
 import Icon from "../Icon/Icon";
 import css from "./Features.module.css";
+import { Loader } from "../Loader/Loader";
 
 export const Features = () => {
   const { id } = useParams();
   const transportation = useSelector((state) => selectOneTruck(state, id));
+
+  if (!transportation) {
+    return <Loader />;
+  }
+
   const {
     transmission,
     AC,

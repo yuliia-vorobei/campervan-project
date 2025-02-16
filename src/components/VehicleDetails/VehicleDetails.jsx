@@ -1,17 +1,14 @@
 import { useSelector } from "react-redux";
-import { selectOneTruck } from "../../redux/transportation/selectors";
-import { useParams } from "react-router-dom";
 import css from "./VehicleDetails.module.css";
+import { Loader } from "../Loader/Loader";
 
 export const VehicleDetails = () => {
-  const { id } = useParams();
-  const transportation = useSelector((state) => selectOneTruck(state, id));
-  const { form, length, width, height, tank, consumption } = transportation;
+  const transportation = useSelector((state) => state.transport);
+  const camper = transportation?.camper;
 
-  //   function splitVariable(variable) {
-  //     const parts = variable.split(" ,");
-  //     return parts;
-  //   }
+  if (!camper) {
+    return <Loader />;
+  }
 
   return (
     <div className={css.container}>
@@ -19,27 +16,27 @@ export const VehicleDetails = () => {
       <ul className={css.list}>
         <li className={css.item}>
           <p>Form</p>
-          <p>{form}</p>
+          <p>{camper.form}</p>
         </li>
         <li className={css.item}>
           <span>Length</span>
-          <span>{length}</span>
+          <span>{camper.length}</span>
         </li>
         <li className={css.item}>
           <span>Width</span>
-          <span>{width}</span>
+          <span>{camper.width}</span>
         </li>
         <li className={css.item}>
           <span>Height</span>
-          <span>{height}</span>
+          <span>{camper.height}</span>
         </li>
         <li className={css.item}>
           <span>Tank</span>
-          <span>{tank}</span>
+          <span>{camper.tank}</span>
         </li>
         <li className={css.item}>
           <span>Consumption</span>
-          <span>{consumption}</span>
+          <span>{camper.consumption}</span>
         </li>
       </ul>
     </div>
